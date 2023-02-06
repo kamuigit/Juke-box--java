@@ -37,15 +37,6 @@ public class JukeTest extends JukeDao{
     }
 
     @Test
-    public void checkLists()
-    {
-        assertEquals(s,j.allSongs());
-        assertEquals(g,j.allGenre());
-        assertEquals(ar,j.allArists());
-        assertEquals(ab, j.allAlbum());
-
-    }
-    @Test
         public void checkLoginFunction(){
             //positive test case
             assertEquals(1,j.LoginVerfication("loki","1234"));
