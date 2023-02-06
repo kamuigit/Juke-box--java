@@ -3,9 +3,38 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Jukeimpl {
+    private String userid;
+    private String password;
+    private int l;
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getL() {
+        return l;
+    }
+
+    public void setL(int l) {
+        this.l = l;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         JukeBox j = new JukeBox();
+        Jukeimpl j1 = new Jukeimpl();
         j.getConnection();
         System.out.println("++++++++++++++++++++++++++++++++++++++++");
         System.out.println("              JUKE BOX                  ");
@@ -13,9 +42,7 @@ public class Jukeimpl {
         System.out.println("Enter : \n(1)To login if account already exists.\n(2) To Register new account.");
         System.out.println("\n----------------------------------------");
         int n = Integer.parseInt(sc.nextLine());
-        int l =0;
-        String userid;
-        String password;
+
         List<Integer> a;
 
         while (n != 0) {
@@ -25,15 +52,16 @@ public class Jukeimpl {
                     System.out.println("              Login here ");
                     System.out.println("++++++++++++++++++++++++++++++++++++++++");
                     System.out.println("Enter username : ");
-                    userid = sc.nextLine();
+                    j1.setUserid( sc.nextLine());
                     System.out.println("Enter Password : ");
-                    password = sc.nextLine();
-                    l = j.LoginVerfication(userid, password);
+                    j1.setPassword(sc.nextLine());
+                    int l = j.LoginVerfication(j1.getUserid(), j1.getPassword());
                     if (l == 0) {
                         System.out.println("Enter 1 to try again or 0 to exit");
                         n = Integer.parseInt(sc.nextLine());
                     }
                     if (l != 0) {
+                        j1.setL(l);
                         n = 3;
                     }
                     break;
@@ -42,10 +70,10 @@ public class Jukeimpl {
                     System.out.println("              Register here ");
                     System.out.println("++++++++++++++++++++++++++++++++++++++++");
                     System.out.println("Enter new username : ");
-                    userid = sc.nextLine();
+                    j1.setUserid( sc.nextLine());
                     System.out.println("Enter new Password : ");
-                    password = sc.nextLine();
-                    j.register(userid, password);
+                    j1.setPassword(sc.nextLine());
+                    j.register(j1.getUserid(), j1.getPassword());
                     System.out.println("Enter 1 to login or 0 to exit");
                     System.out.println("---------------------------------------------");
                     n = Integer.parseInt(sc.nextLine());
@@ -70,9 +98,9 @@ public class Jukeimpl {
                             case 2:
                                 System.out.println("---------------------------------------------");
                                 System.out.println("To View and Play PLaylist : ");
-                                j.displayPlaylists(l);
+                                j.displayPlaylists(j1.getL());
                                 System.out.println("Enter the Id of the playlist to be played : ");
-                                a = j.getPlaylist(Integer.parseInt(sc.nextLine()),l);
+                                a = j.getPlaylist(Integer.parseInt(sc.nextLine()),j1.getL());
                                 j.playSonglist(a);
                                 System.out.println("---------------------------------------------");
                                 break;
@@ -80,7 +108,7 @@ public class Jukeimpl {
                                 System.out.println("---------------------------------------------");
                                 System.out.println("To Create Playlist : ");
                                 System.out.println("Enter the Playlist Name : ");
-                                j.createPlaylist(sc.nextLine(),l);
+                                j.createPlaylist(sc.nextLine(),j1.getL());
                                 System.out.println("---------------------------------------------");
                                 break;
                         }

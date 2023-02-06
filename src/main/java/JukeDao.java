@@ -146,6 +146,7 @@ public class JukeDao {
             Connection conn = getConnection();
             Statement st = conn.createStatement();
            ResultSet rs = st.executeQuery("select playlistid from playlist where  playlistName ='"+playlistname+"';");
+           rs.next();
             return rs.getInt("playlistid");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -156,7 +157,7 @@ public class JukeDao {
         try {
             Connection conn = getConnection();
             Statement st = conn.createStatement();
-            st.executeUpdate("insert into playlisttc(playlistid,songid,usid) values ("+playlistid+","+songid+","+usid+");");
+            st.execute("insert into playlisttc(playlistid,songid,usid) values ("+playlistid+","+songid+","+usid+");");
         } catch (SQLException e) {
             e.printStackTrace();
         }
