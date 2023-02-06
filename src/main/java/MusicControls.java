@@ -46,7 +46,7 @@ public class MusicControls extends JukeDao{
                             "\nS = Pause/Stop" +
                             "\nR = Reset" +
                             "\nL = Loop");
-                    if(i!=s.size()){
+                    if(i!=s.size() && i!=1){
                         System.out.println("N = Next");
                     }
                     if(s.size()>1) {
