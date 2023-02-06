@@ -46,7 +46,7 @@ public class MusicControls extends JukeDao{
                             "\nS = Pause/Stop" +
                             "\nR = Reset" +
                             "\nL = Loop");
-                    if(i!=s.size() && i!=1){
+                    if(i != s.size()-1 ){
                         System.out.println("N = Next");
                     }
                     if(s.size()>1) {
@@ -73,7 +73,9 @@ public class MusicControls extends JukeDao{
                             break;
                         case ("N"):
                             clip.close();
-                            System.out.println("Click play to start next song .");
+                            if(i!=s.size()-1) {
+                                System.out.println("Click play to start next song .");
+                            }
                             break;
                         case ("PR"):
                             i = i - 2;

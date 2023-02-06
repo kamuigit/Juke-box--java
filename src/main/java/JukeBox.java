@@ -109,7 +109,7 @@ public class JukeBox extends MusicControls{
 
     public List <Integer> searchSongByAlbum(int albumid){
         List<Album> ar = allAlbum();
-        if(albumid>1 && albumid<ar.size() ) {
+        if(albumid>0 ) {
             List<Integer> a = new ArrayList<>();
             for (Album a1 : ar) {
                 if (a1.getAlbumid() == albumid) {
@@ -132,7 +132,7 @@ public class JukeBox extends MusicControls{
 
     public List<Integer> searchSongByGenre(int id){
         List<Genre> ar = allGenre();
-        if(id>1 && id<ar.size() ) {
+        if(id>1 ) {
             List<Integer> a = new ArrayList<>();
             for (Genre a1 : ar) {
                 if (a1.getGenreid() == id) {
@@ -152,7 +152,7 @@ public class JukeBox extends MusicControls{
     }
     public List<Integer> searchSongByArtist(int id){
         List<Artist> ar = allArists();
-        if(id>1 && id<ar.size() ) {
+        if(id>0 ) {
             List<Integer> a = new ArrayList<>();
             for (Artist a1 : ar) {
                 if (a1.getArtistid() == id) {
@@ -172,20 +172,14 @@ public class JukeBox extends MusicControls{
     }
     public List<Integer> getPlaylist(int playlistid,int usid){
         List<Playlist> ar = allPlaylist(usid);
-        if(playlistid>1 && playlistid<ar.size() ) {
-            List<Integer> a = new ArrayList<>();
+        if(playlistid >0 ) {
             for (Playlist p : ar) {
                 if (p.getPlaylistid() == playlistid) {
                     System.out.println("Selected Playlist name : " + p.getPlaylistName());
-                    for (Songs s1 : allSongs()) {
-                        if (s1.getAristid() == p.getPlaylistid()) {
-                            a.add(s1.getSongid());
-                        }
                     }
                 }
+            return getplaylistById(playlistid,usid);
             }
-            return a;
-        }
         else{
             return null;
         }

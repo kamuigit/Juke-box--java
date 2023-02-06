@@ -118,7 +118,7 @@ public class JukeDao {
         }
         return l;
     }
-    public List<Integer> playlistById(int playlistid,int usid) {
+    public List<Integer> getplaylistById(int playlistid,int usid) {
         List<Integer> l = new ArrayList<>();
         try {
             Connection conn = getConnection();
