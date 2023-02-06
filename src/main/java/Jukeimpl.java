@@ -101,6 +101,10 @@ public class Jukeimpl {
                                 j.displayPlaylists(j1.getL());
                                 System.out.println("Enter the Id of the playlist to be played : ");
                                 a = j.getPlaylist(Integer.parseInt(sc.nextLine()),j1.getL());
+                                if(a==null){
+                                    System.out.println("Invalid PlaylistId , Try again.");
+                                    break;
+                                }
                                 j.playSonglist(a);
                                 System.out.println("---------------------------------------------");
                                 break;

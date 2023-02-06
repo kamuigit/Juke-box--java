@@ -109,66 +109,86 @@ public class JukeBox extends MusicControls{
 
     public List <Integer> searchSongByAlbum(int albumid){
         List<Album> ar = allAlbum();
-        List <Integer> a = new ArrayList<>();
-        for(Album a1 : ar){
-            if(a1.getAlbumid() == albumid){
-                System.out.println("album : "+a1.getAlbumName());
-                for (Songs s1: allSongs()) {
-                    if(s1.getAlbumid() == a1.getAlbumid()){
-                        a.add(s1.getSongid());
+        if(albumid>1 && albumid<ar.size() ) {
+            List<Integer> a = new ArrayList<>();
+            for (Album a1 : ar) {
+                if (a1.getAlbumid() == albumid) {
+                    System.out.println("album : " + a1.getAlbumName());
+                    for (Songs s1 : allSongs()) {
+                        if (s1.getAlbumid() == a1.getAlbumid()) {
+                            a.add(s1.getSongid());
+                        }
                     }
                 }
             }
+            return a;
         }
-        return a;
+        else{
+            return null;
+        }
     }
 
 
 
     public List<Integer> searchSongByGenre(int id){
         List<Genre> ar = allGenre();
-        List <Integer> a = new ArrayList<>();
-        for(Genre a1 : ar){
-            if(a1.getGenreid() == id){
-                System.out.println("Album name : "+a1.getGenreName());
-                for (Songs s1: allSongs()) {
-                    if(s1.getGenreid() == a1.getGenreid()){
-                        a.add(s1.getSongid());
+        if(id>1 && id<ar.size() ) {
+            List<Integer> a = new ArrayList<>();
+            for (Genre a1 : ar) {
+                if (a1.getGenreid() == id) {
+                    System.out.println("Album name : " + a1.getGenreName());
+                    for (Songs s1 : allSongs()) {
+                        if (s1.getGenreid() == a1.getGenreid()) {
+                            a.add(s1.getSongid());
+                        }
                     }
                 }
             }
+            return a;
         }
-        return a;
+        else{
+            return null;
+        }
     }
     public List<Integer> searchSongByArtist(int id){
         List<Artist> ar = allArists();
-        List <Integer> a = new ArrayList<>();
-        for(Artist a1 : ar){
-            if(a1.getArtistid() == id) {
-                System.out.println("Selected Artist name : " + a1.getArtistName());
-                for (Songs s1 : allSongs()) {
-                    if (s1.getAristid() == a1.getArtistid()) {
-                        a.add(s1.getSongid());
+        if(id>1 && id<ar.size() ) {
+            List<Integer> a = new ArrayList<>();
+            for (Artist a1 : ar) {
+                if (a1.getArtistid() == id) {
+                    System.out.println("Selected Artist name : " + a1.getArtistName());
+                    for (Songs s1 : allSongs()) {
+                        if (s1.getAristid() == a1.getArtistid()) {
+                            a.add(s1.getSongid());
+                        }
                     }
                 }
             }
+            return a;
         }
-        return a;
+        else{
+            return null;
+        }
     }
     public List<Integer> getPlaylist(int playlistid,int usid){
         List<Playlist> ar = allPlaylist(usid);
-        List <Integer> a = new ArrayList<>();
-        for(Playlist p : ar){
-            if(p.getPlaylistid() ==playlistid ) {
-                System.out.println("Selected Playlist name : " + p.getPlaylistName());
-                for (Songs s1 : allSongs()) {
-                    if (s1.getAristid() == p.getPlaylistid()) {
-                        a.add(s1.getSongid());
+        if(playlistid>1 && playlistid<ar.size() ) {
+            List<Integer> a = new ArrayList<>();
+            for (Playlist p : ar) {
+                if (p.getPlaylistid() == playlistid) {
+                    System.out.println("Selected Playlist name : " + p.getPlaylistName());
+                    for (Songs s1 : allSongs()) {
+                        if (s1.getAristid() == p.getPlaylistid()) {
+                            a.add(s1.getSongid());
+                        }
                     }
                 }
             }
+            return a;
         }
-        return a;
+        else{
+            return null;
+        }
     }
     public void createPlaylist(String playlistname,int usid){
         sc = new Scanner(System.in);
@@ -218,6 +238,10 @@ public class JukeBox extends MusicControls{
                     displayAlbums();
                     System.out.println("Look above and Enter Album id to play :");
                     a = searchSongByAlbum(Integer.parseInt(sc.nextLine()));
+                    if(a==null){
+                        System.out.println("Invalid AlbumId , Try again.");
+                        break;
+                    }
                     playSonglist(a);
                     System.out.println("---------------------------------------------");
                     break;
@@ -227,6 +251,10 @@ public class JukeBox extends MusicControls{
                     displayArtists();
                     System.out.println("Look above and Enter Artist id to play :");
                     a = searchSongByArtist(Integer.parseInt(sc.nextLine()));
+                    if(a==null){
+                        System.out.println("Invalid ArtistId , Try again.");
+                        break;
+                    }
                     playSonglist(a);
                     System.out.println("---------------------------------------------");
                     break;
@@ -236,6 +264,10 @@ public class JukeBox extends MusicControls{
                     displayGenre();
                     System.out.println("Look above and Enter Genre id to play :");
                     a = searchSongByGenre(Integer.parseInt(sc.nextLine()));
+                    if(a==null){
+                        System.out.println("Invalid GenreId , Try again.");
+                        break;
+                    }
                     playSonglist(a);
                     System.out.println("---------------------------------------------");
                     break;
@@ -245,6 +277,10 @@ public class JukeBox extends MusicControls{
                     displaySongs();
                     System.out.println("Look above and Enter Song id to play :");
                     a = BysearchSongname(Integer.parseInt(sc.nextLine()));
+                    if(a==null){
+                        System.out.println("Invalid SongId , Try again.");
+                        break;
+                    }
                     playSonglist(a);
                     System.out.println("---------------------------------------------");
                     break;
